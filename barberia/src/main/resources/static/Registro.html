@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - MONOBARBERSHOP</title>
+    
+    <style>
+        /* Define el fondo con un degradado lineal y centra el contenido en la pantalla */
+        body {
+            background: linear-gradient(to bottom, #4e545c, #2c3e50);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex; /* Uso de Flexbox para centrar el formulario */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Contenedor que limita el ancho del formulario para que sea responsivo */
+        .main-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Estilo para el título principal del módulo */
+        .title {
+            color: #1a1a1a;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        /* Grid Layout: Organiza los campos en 2 columnas iguales con un espacio de 15px entre filas */
+        .grid-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px 10px;
+        }
+
+        /* Estructura para cada etiqueta y su respectivo campo de texto */
+        .input-group {
+            text-align: left;
+        }
+
+        /* Estilo de la etiqueta descriptiva del campo */
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #1a1a1a;
+        }
+
+        /* Estilo de los campos de entrada: Asegura que ocupen el 100% de su columna */
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #999;
+            border-radius: 2px;
+            box-sizing: border-box; /* Incluye el padding en el ancho total */
+            background-color: #fff;
+        }
+
+        /* Contenedor del botón: Se expande a lo ancho de las dos columnas (span 2) */
+        .button-container {
+            grid-column: span 2;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Estilo del botón de acción principal con sombra para efecto de relieve */
+        .btn-guardar {
+            background-color: #008cff;
+            color: white;
+            border: none;
+            padding: 12px 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body> 
+   
+    <div class="main-container">
+        
+        <h2 class="title">Informacion del usuario</h2>
+        
+        <!-- Formulario que envía los datos al backend -->
+        <form class="grid-form" action="/clientes/guardar" method="post">
+            
+            <div class="input-group">
+                <label>Nombre</label>
+                <input type="text" name="nombre" value="Cristian">
+            </div>
+
+            <div class="input-group">
+                <label>Segundo nombre</label>
+                <input type="text" name="segundoNombre" value="Yanir">
+            </div>
+
+            <div class="input-group">
+                <label>Primer apellido</label>
+                <input type="text" name="primerApellido" value="Gonzalez">
+            </div>
+
+            <div class="input-group">
+                <label>Segundo apellido</label>
+                <input type="text" name="segundoApellido" value="Banguero">
+            </div>
+
+            <div class="input-group">
+                <label>Fecha de nacimiento</label>
+                <input type="text" name="fechaNacimiento" value="29/06/1994">
+            </div>
+
+            <div class="input-group">
+                <label>Cédula o documento</label>
+                <input type="text" name="documento" value="1062313855">
+            </div>
+
+            <div class="input-group">
+                <label>Dirección</label>
+                <input type="text" name="direccion" value="Crucero de Guali">
+            </div>
+
+            <div class="input-group">
+                <label>Ciudad</label>
+                <input type="text" name="ciudad" value="Caloto Cauca">
+            </div>
+
+            <div class="input-group">
+                <label>Celular</label>
+                <input type="text" name="celular" value="3127041098">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" value="Crisgon0624@gmail.com">
+            </div>
+            
+            <div class="input-group">
+                <label>Contraseña</label>
+                <input type="password" name="contrasena" value="123456789">
+            </div>
+
+            <div class="input-group">
+                <label>Confirmar contraseña</label>
+                <input type="password" name="confirmarContrasena" value="123456789">
+            </div>
+
+            <!-- Botón centrado que envía el formulario -->
+            <div class="button-container">
+                <button type="submit" class="btn-guardar">Guardar</button>
+            </div>
+            
+        </form>
+    </div>
+</body>
+</html>
