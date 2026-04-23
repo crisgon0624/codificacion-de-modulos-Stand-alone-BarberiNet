@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registro - MONOBARBERSHOP</title>
+    <title>registro - MONOBARBERSHOP</title>
     
     <style>
         /* Define el fondo con un degradado lineal y centra el contenido en la pantalla */
@@ -88,69 +88,79 @@
    
     <div class="main-container">
         
-        <h2 class="title">Informacion del usuario</h2>
+        <h2 style="text-align: center;">Informacion del usuario</h2>
+
+    <div th:if="${mensaje}" 
+         style="color: #721c24; background-color: #f8d7da; padding: 12px; border-radius: 8px; text-align: center; margin-bottom: 10px;">
+        <span th:text="${mensaje}"></span>
+    </div>
+
+    <div th:if="${mensajeExito}" 
+         style="color: #155724; background-color: #d4edda; padding: 12px; border-radius: 8px; text-align: center; margin-bottom: 10px;">
+         <span th:text="${mensajeExito}"></span>
+    </div>
         
         <!-- Formulario que envía los datos al backend -->
-        <form class="grid-form" action="/clientes/guardar" method="post">
+        <form action="/clientes/guardar" method="post">
             
             <div class="input-group">
                 <label>Nombre</label>
-                <input type="text" name="nombre" value="Cristian">
+                <input type="text" name="nombre" placeholder="Cristian" required>
             </div>
 
             <div class="input-group">
                 <label>Segundo nombre</label>
-                <input type="text" name="segundoNombre" value="Yanir">
+                <input type="text" name="segundoNombre" placeholder="Andres" required>
             </div>
 
             <div class="input-group">
                 <label>Primer apellido</label>
-                <input type="text" name="primerApellido" value="Gonzalez">
+                <input type="text" name="primerApellido" placeholder="Gonzalez" required>
             </div>
 
             <div class="input-group">
                 <label>Segundo apellido</label>
-                <input type="text" name="segundoApellido" value="Banguero">
+                <input type="text" name="segundoApellido" placeholder="Banguero" required>
             </div>
 
             <div class="input-group">
                 <label>Fecha de nacimiento</label>
-                <input type="text" name="fechaNacimiento" value="29/06/1994">
+                <input type="text" name="fechaNacimiento" placeholder="Dia/Mes/Año" required>
             </div>
 
             <div class="input-group">
                 <label>Cédula o documento</label>
-                <input type="text" name="documento" value="1062313855">
+                <input type="text" name="documento" placeholder="1062313855" required>
             </div>
 
             <div class="input-group">
                 <label>Dirección</label>
-                <input type="text" name="direccion" value="Crucero de Guali">
+                <input type="text" name="direccion" placeholder="Crucero de Guali" required> 
             </div>
 
             <div class="input-group">
                 <label>Ciudad</label>
-                <input type="text" name="ciudad" value="Caloto Cauca">
+                <input type="text" name="ciudad" placeholder="Caloto Cauca" required>
             </div>
 
             <div class="input-group">
                 <label>Celular</label>
-                <input type="text" name="celular" value="3127041098">
+                <input type="text" name="celular" placeholder="3007041098" required>
             </div>
 
             <div class="input-group">
                 <label>Email</label>
-                <input type="email" name="email" value="Crisgon0624@gmail.com">
+                <input type="email" name="email" placeholder="Ejemplo@gmail.com" required>
             </div>
             
             <div class="input-group">
                 <label>Contraseña</label>
-                <input type="password" name="contrasena" value="123456789">
+                <input type="password" name="contrasena" placeholder="New pasword" required>
             </div>
 
             <div class="input-group">
                 <label>Confirmar contraseña</label>
-                <input type="password" name="confirmarContrasena" value="123456789">
+                <input type="password" name="confirmarContrasena" placeholder="Confirm pasword" required>
             </div>
 
             <!-- Botón centrado que envía el formulario -->
@@ -159,6 +169,7 @@
             </div>
             
         </form>
+        <p th:text="${mensaje}" style="color: white; margin-top: 15px; text-align:center;"></p>
     </div>
 </body>
 </html>

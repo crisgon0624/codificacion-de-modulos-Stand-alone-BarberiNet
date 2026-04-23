@@ -4,7 +4,10 @@ import com.barberia.model.Cliente;
 import com.barberia.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
@@ -32,13 +35,48 @@ public class ClienteController {
     }
 
     /**
-     * Este método se ejecuta cuando el usuario envía el formulario de registro.
-     * Recibe los datos, crea un objeto Cliente automáticamente
-     * y lo guarda en la base de datos.
+     * Este método muestra el formulario de registro
      */
-    @PostMapping("/guardar")
-    public String guardarCliente(Cliente cliente) {
-        clienteRepository.save(cliente); // Guarda el cliente en la BD
-        return "redirect:/"; // Redirige al inicio después de guardar
+    @GetMapping("/registro")
+    public String mostrarFormulario(Model model) {
+        model.addAttribute("cliente", new Cliente());
+        return "Registro"; // nombre del HTML
+    }
+
+   /**
+     * Guarda el cliente cuando le dan clic al botón
+     */
+   @PostMapping("/guardar")
+    public String guardarCliente(
+            @Valid @ModelAttribute Cliente cliente,
+            BindingResult result,
+            @RequestParam("confirmarContrasena") String confirmarContrasena,
+            org.springframework.web.servlet.mvc.support.RedirectAttributes flash, // Cambiamos esto
+            Model model) {
+
+        // Si hay errores (campos vacíos), volvemos al formulario SIN el mensaje de éxito
+        if (result.hasErrors()) {
+            return "Registro"; 
+        }
+
+        // Validar contraseñas
+        if (!cliente.getContrasena().equals(confirmarContrasena)) {
+            model.addAttribute("mensaje", "Las contraseñas no coinciden");
+            return "Registro";
+        }
+
+        // Validar largo del celular (10 dígitos)
+        if (cliente.getCelular() == null || cliente.getCelular().length() != 10) {
+            model.addAttribute("mensaje", "El celular debe tener 10 números");
+            return "Registro";
+        }
+
+        // Si todo está OK, guardamos
+        clienteRepository.save(cliente);
+
+        // Usamos flash para que el mensaje aparezca una sola vez y se borre solo
+        flash.addFlashAttribute("mensajeExito", "¡Registro completado con éxito!");
+        
+        return "redirect:/clientes/registro"; 
     }
 }

@@ -14,4 +14,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     
 // Esta interfaz queda vacía porque JpaRepository ya trae todos los comandos
     // necesarios para manejar la tabla de clientes automáticamente.
+    
+     // Este método busca un cliente por su correo electrónico
+    Cliente findByEmail(String email);
 }
